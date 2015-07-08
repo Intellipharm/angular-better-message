@@ -1,0 +1,19 @@
+{
+  "name": "v0",
+  "version": "0.0.0",
+  "authors": [
+    "Neil Russell <neil-intellipharm@github.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "v0": "/var/www/html/angular-better-message/examples/v0",
+    "font-awesome": "~4.3.0"
+  }
+}

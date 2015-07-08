@@ -1,0 +1,56 @@
+@import "vars/angular-better-message";
+
+.angular-better-message {
+
+    //------------------------------
+    // structure
+    //------------------------------
+
+    display: table;
+    height: @angular-better-message-height;
+
+    .prompt, .message {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .message {
+        padding: 0 @angular-better-message-h-space;
+        width: 100%;
+        font-size: @angular-better-message-font-size;
+        .fa {
+            margin-right: @angular-better-message-h-space;
+        }
+    }
+
+    &.has-prompt .message {
+        width: ~"calc(100% - @{angular-better-message-prompt-column-width})";
+    }
+
+    .prompt {
+        text-align: right;
+        width: @angular-better-message-prompt-column-width;
+        .btn {
+            margin: 0 @angular-better-message-h-space 0 0;
+            .fa {
+                margin-left: @angular-better-message-h-space;
+            }
+        }
+    }
+
+    //------------------------------
+    // animations
+    //------------------------------
+
+    opacity: @angular-better-message-opacity;
+
+    &.ng-hide-add.ng-hide-add-active,
+    &.ng-hide-remove.ng-hide-remove-active {
+      -webkit-transition: all linear @angular-better-message-tranasition-duration;
+      transition: all linear @angular-better-message-tranasition-duration;
+    }
+
+    &.ng-hide {
+      opacity: 0;
+    }
+}

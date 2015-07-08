@@ -1,0 +1,39 @@
+.angular-better-message {
+  display: table;
+  height: 40px;
+  opacity: 0.9;
+}
+.angular-better-message .prompt,
+.angular-better-message .message {
+  display: table-cell;
+  vertical-align: middle;
+}
+.angular-better-message .message {
+  padding: 0 15px;
+  width: 100%;
+  font-size: 16px;
+}
+.angular-better-message .message .fa {
+  margin-right: 15px;
+}
+.angular-better-message.has-prompt .message {
+  width: calc(100% - 180px);
+}
+.angular-better-message .prompt {
+  text-align: right;
+  width: 180px;
+}
+.angular-better-message .prompt .btn {
+  margin: 0 15px 0 0;
+}
+.angular-better-message .prompt .btn .fa {
+  margin-left: 15px;
+}
+.angular-better-message.ng-hide-add.ng-hide-add-active,
+.angular-better-message.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.3s;
+  transition: all linear 0.3s;
+}
+.angular-better-message.ng-hide {
+  opacity: 0;
+}

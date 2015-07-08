@@ -1,0 +1,74 @@
+@import "vars/angular-better-message";
+
+.angular-better-message {
+
+    //------------------------------
+    // colors
+    //------------------------------
+
+    &.info {
+        background-color: @angular-better-message-info-bg-color;
+        > .message {
+            color: @angular-better-message-info-text-color;
+        }
+    }
+    &.success {
+        background-color: @angular-better-message-success-bg-color;
+        > .message {
+            color: @angular-better-message-success-text-color;
+        }
+    }
+    &.danger {
+        background-color: @angular-better-message-danger-bg-color;
+        > .message {
+            color: @angular-better-message-danger-text-color;
+        }
+    }
+
+    @media (min-width: 800px) {
+        .message-wrapper {
+            min-height: 85px;
+        }
+    }
+    &.warning {
+        background-color: @angular-better-message-warning-bg-color;
+        > .message {
+            color: @angular-better-message-warning-text-color;
+        }
+    }
+
+    //------------------------------
+    // structure / behaviour
+    //------------------------------
+
+    position: static;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+
+    &.detached {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 99999999;
+        right: 0px;
+    }
+
+    @media (max-width: 799px) {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 99999999;
+        right: 0px;
+    }
+}
+
+//------------------------------
+// wrapper
+//------------------------------
+
+@media (min-width: 800px) {
+    .message-wrapper {
+        min-height: 85px;
+    }
+}

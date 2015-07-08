@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>AngularSvgNodes : Simple Example</title>
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../../../dist/css/angular-better-message.min.css">
+    <link rel="stylesheet" href="css/angular-better-message.css">
+</head>
+<body ng-app="App" ng-controller="AppController as ctrl">
+
+<div class="row">
+	<div class="col-xs-12 description">
+		<h2>AngularSvgNodes Simple Example</h2>
+	</div>
+</div><!--/.row-->
+
+<br/>
+<br/>
+
+<div class="message-wrapper">
+	<angular-better-message
+		fixed-position-on-scroll="true"
+		message="ctrl.better_message.message"
+		state="ctrl.better_message.state"
+		prompt="ctrl.better_message.prompt"
+		message-icon-class="ctrl.better_message.icon_class"
+		prompt-icon-class="ctrl.better_message.prompt_icon_class"
+		prompt-button-class="ctrl.better_message.prompt_button_class"
+		display-seconds="ctrl.better_message.display_seconds"
+		show-count-down="ctrl.better_message.show_count_down"
+		on-prompt-click="ctrl.onPromptClick()"></angular-better-message>
+</div>
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 example well">
+
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Click any "change" button to test the message.</p>
+        <p>In this example the message is styled to always be fixed on small screens</p>
+        <p>On bigger screens the message wil fix when you scroll past it's point.</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Nisi quidem, velit numquam voluptas accusamus sunt? Vel beatae rem consequatur facilis blanditiis temporibus, excepturi error nihil officia unde dolore facere iure distinctio deserunt, voluptates, rerum eligendi hic reiciendis quos?</p>
+        <p>Vitae recusandae consequuntur maxime laudantium, minus veniam quia fuga distinctio aperiam porro, mollitia delectus facilis repellat. Nulla optio blanditiis laudantium quis placeat. Asperiores iure culpa doloribus, recusandae consectetur officia autem.</p>
+        <p>Obcaecati sunt harum et nesciunt voluptas, in recusandae similique praesentium, quam perspiciatis commodi vero earum cupiditate? Sint quidem itaque, rem enim, mollitia dolores ab, officia voluptates saepe aliquid tempora ratione.</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia numquam rerum veritatis consequatur fugit accusantium possimus magnam labore ipsam ex, ut officia, quia porro tempore maiores dicta aliquid a quis!</p>
+        <p>Dolores fuga dolore dignissimos qui ipsum optio sunt eligendi consequatur eius iure maxime, assumenda doloremque incidunt, aspernatur ullam asperiores voluptate! Animi enim molestias nulla obcaecati placeat provident nam, voluptates dignissimos?</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Nisi quidem, velit numquam voluptas accusamus sunt? Vel beatae rem consequatur facilis blanditiis temporibus, excepturi error nihil officia unde dolore facere iure distinctio deserunt, voluptates, rerum eligendi hic reiciendis quos?</p>
+        <p>Vitae recusandae consequuntur maxime laudantium, minus veniam quia fuga distinctio aperiam porro, mollitia delectus facilis repellat. Nulla optio blanditiis laudantium quis placeat. Asperiores iure culpa doloribus, recusandae consectetur officia autem.</p>
+        <p>Obcaecati sunt harum et nesciunt voluptas, in recusandae similique praesentium, quam perspiciatis commodi vero earum cupiditate? Sint quidem itaque, rem enim, mollitia dolores ab, officia voluptates saepe aliquid tempora ratione.</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Nisi quidem, velit numquam voluptas accusamus sunt? Vel beatae rem consequatur facilis blanditiis temporibus, excepturi error nihil officia unde dolore facere iure distinctio deserunt, voluptates, rerum eligendi hic reiciendis quos?</p>
+        <p>Vitae recusandae consequuntur maxime laudantium, minus veniam quia fuga distinctio aperiam porro, mollitia delectus facilis repellat. Nulla optio blanditiis laudantium quis placeat. Asperiores iure culpa doloribus, recusandae consectetur officia autem.</p>
+        <p>Obcaecati sunt harum et nesciunt voluptas, in recusandae similique praesentium, quam perspiciatis commodi vero earum cupiditate? Sint quidem itaque, rem enim, mollitia dolores ab, officia voluptates saepe aliquid tempora ratione.</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia numquam rerum veritatis consequatur fugit accusantium possimus magnam labore ipsam ex, ut officia, quia porro tempore maiores dicta aliquid a quis!</p>
+        <p>Dolores fuga dolore dignissimos qui ipsum optio sunt eligendi consequatur eius iure maxime, assumenda doloremque incidunt, aspernatur ullam asperiores voluptate! Animi enim molestias nulla obcaecati placeat provident nam, voluptates dignissimos?</p>
+		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+        <p>Nisi quidem, velit numquam voluptas accusamus sunt? Vel beatae rem consequatur facilis blanditiis temporibus, excepturi error nihil officia unde dolore facere iure distinctio deserunt, voluptates, rerum eligendi hic reiciendis quos?</p>
+        <p>Vitae recusandae consequuntur maxime laudantium, minus veniam quia fuga distinctio aperiam porro, mollitia delectus facilis repellat. Nulla optio blanditiis laudantium quis placeat. Asperiores iure culpa doloribus, recusandae consectetur officia autem.</p>
+        <p>Obcaecati sunt harum et nesciunt voluptas, in recusandae similique praesentium, quam perspiciatis commodi vero earum cupiditate? Sint quidem itaque, rem enim, mollitia dolores ab, officia voluptates saepe aliquid tempora ratione.</p>
+
+	</div>
+</div><!--/.row-->
+
+<!-- dependencies -->
+<script src="../../../node_modules/angular/angular.min.js"></script>
+<script src="../../../node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="../../../node_modules/lodash/index.js"></script>
+
+<!-- angular better message -->
+<script src="../../../dist/js/angular-better-message.tmpl.min.js"></script>
+
+<!-- example app -->
+<script src="js/app.js"></script>
+<script src="js/app-controller.js"></script>
+<script src="js/angular-better-message-helper-service.js"></script>
+
+</body>
+</html>
+</html>
