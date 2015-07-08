@@ -1,7 +1,7 @@
 # angular-better-message
 
 ## Dependencies
-angular-svg-nodes depends on [AngularJS](https://github.com/angular/angular.js), [Lodash](https://github.com/lodash/lodash)
+angular-better-message depends on [angular](https://www.npmjs.com/package/angular), [angular-animate](https://www.npmjs.com/package/angular-animate), [lodash](https://www.npmjs.com/package/lodash)
 
 ## Description
 
