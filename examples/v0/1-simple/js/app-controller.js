@@ -16,7 +16,8 @@
             count++;
             switch (count) {
                 case 1:
-                    self.better_message = MessageService.getMessageConfig('info', "Hello you");
+                    self.better_message = MessageService.getMessageConfig('invalid');
+                    //self.better_message = MessageService.getMessageConfig('info', "Hello you");
                     break;
                 case 2:
                     self.better_message = MessageService.getMessageConfig('saving');

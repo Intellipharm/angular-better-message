@@ -54,7 +54,7 @@ gulp.task('watch', [
         'src-lint-js',
         'src-compile-js',
         'dist-concat-minify-js',
-        'dist-concat-minify-tmpl-js'
+        'dist-concat-minify-tmpl-js',
     ]);
     gulp.watch(config.common.dir.src + '/' + config.common.dir.html + '/**/*.html', [
         'dist-concat-minify-tmpl-js'

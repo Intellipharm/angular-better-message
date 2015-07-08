@@ -89,15 +89,15 @@
                  */
                 scope.checkPosition = function() {
 
-                    // get element top offset
-                    element_top = element[0].getBoundingClientRect().top;
+                    // element is visible & is not detached & is not ready
+                    if (scope.is_visible && !element.hasClass('detached') && _.isNull(element[0].offsetParent)) {
 
-                    // if element is not visible yet (we can't calculate it's position)
-                    if (element_top === 0 && $window.pageYOffset > 0 && _.isNull(element[0].offsetParent)) {
-
-                        // update after timeout
-                        element_visible_timer = $timeout(scope.updateDetached, 1);
+                        // wait
+                        element_visible_timer = $timeout(scope.checkPosition, 100);
                     } else {
+
+                        // get element top offset
+                        element_top = element[0].getBoundingClientRect().top;
 
                         // update
                         scope.updateDetached();
@@ -113,8 +113,6 @@
                     $timeout.cancel(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
-                    // TODO: incase current does not work
-                    // if (!element.hasClass('detached') && _.parseInt(getPosition(element[0]).y) <= 0 && $window.pageYOffset > 0) {
                     if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
                         detached_position = $window.pageYOffset;
                         element.addClass('detached');
@@ -142,6 +140,9 @@
 
                     if (!_.isUndefined(val) && val !== "") {
 
+                        // set visibility
+                        scope.is_visible = true;
+
                         // check position
                         if (scope.fixed_position_on_scroll) {
                             scope.checkPosition();
@@ -152,9 +153,6 @@
 
                         // stop timeout
                         $timeout.cancel(wait_timer);
-
-                        // set visibility
-                        scope.is_visible = true;
 
                         // auto close after interval
                         if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {

@@ -16,7 +16,7 @@
             prompt_icon_class: "fa fa-chevron-right",
             prompt_button_class: "btn",
             show_count_down: false,
-            display_seconds: 3,
+            display_seconds: 1,
         };
 
         var config = {
