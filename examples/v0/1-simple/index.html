@@ -17,10 +17,14 @@
 <br/>
 <br/>
 
+{{ctrl.better_message.force_change}}
+
 <div class="message-wrapper">
 	<angular-better-message
+		api="ctrl.angular_better_message_api"
 		fixed-position-on-scroll="true"
 		message="ctrl.better_message.message"
+		force-change="ctrl.better_message.force_change"
 		state="ctrl.better_message.state"
 		prompt="ctrl.better_message.prompt"
 		message-icon-class="ctrl.better_message.icon_class"
@@ -28,13 +32,14 @@
 		prompt-button-class="ctrl.better_message.prompt_button_class"
 		display-seconds="ctrl.better_message.display_seconds"
 		show-count-down="ctrl.better_message.show_count_down"
-		on-prompt-click="ctrl.onPromptClick()"></angular-better-message>
+		on-prompt-click="ctrl.onPromptClick(state)"></angular-better-message>
 </div>
 
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 example well">
 
 		<button class="button" ng-click="ctrl.onChange()">CHANGE</button>
+		<button class="button" ng-click="ctrl.onEnd()">END</button>
         <p>Click any "change" button to test the message.</p>
         <p>In this example the message is styled to always be fixed on small screens</p>
         <p>On bigger screens the message wil fix when you scroll past it's point.</p>

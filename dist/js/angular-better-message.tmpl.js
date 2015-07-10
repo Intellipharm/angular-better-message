@@ -26,7 +26,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
          */
         this.onClick = function() {
             if (!_.isUndefined($s.onClick)) {
-                $s.onClick();
+                $s.onClick({state: $s.state});
             }
             $s.close();
         };
@@ -69,10 +69,12 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
         return {
             restrict: 'EA',
             scope: {
-                state:                  "=state",
-                message:                "=message",
+                api:                    "=",
+                state:                  "=",
+                force_change:           "=forceChange",
+                message:                "=",
                 message_icon_class:     "=messageIconClass",
-                prompt:                 "=prompt",
+                prompt:                 "=",
                 prompt_button_class:    "=promptButtonClass",
                 prompt_icon_class:      "=promptIconClass",
                 display_seconds:        "=displaySeconds",
@@ -82,6 +84,8 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
             },
             controller: "AngularBetterMessageCtrl as ctrl",
             link: function(scope, element, attrs, controller) {
+
+                var api = scope.api || {};
 
                 // classes
                 scope.message_class = MESSAGE_CLASS;
@@ -96,6 +100,14 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 // fix on scroll
                 var detached_position;
                 var window_element = angular.element($window);
+
+                //--------------------------------------------------------
+                // api
+                //--------------------------------------------------------
+
+                api.close = function() {
+                    scope.close();
+                };
 
                 //--------------------------------------------------------
                 // utils
@@ -164,6 +176,36 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     }
                 };
 
+                /**
+                 * update
+                 */
+                scope.update = function() {
+
+                    // set visibility
+                    scope.is_visible = true;
+
+                    // check position
+                    if (scope.fixed_position_on_scroll) {
+                        scope.checkPosition();
+                    }
+
+                    // reset count down
+                    scope.count_down = _.parseInt(scope.display_seconds);
+
+                    // stop timeout
+                    $timeout.cancel(wait_timer);
+
+                    // auto close after interval
+                    if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {
+
+                        // start wait
+                        scope.wait();
+
+                        // set outer promt class
+                        scope.outer_prompt_class = HAS_PROMPT_CLASS;
+                    }
+                };
+
                 //--------------------------------------------------------
                 // watchers
                 //--------------------------------------------------------
@@ -179,30 +221,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 scope.$watch('message', function(val) {
 
                     if (!_.isUndefined(val) && val !== "") {
-
-                        // set visibility
-                        scope.is_visible = true;
-
-                        // check position
-                        if (scope.fixed_position_on_scroll) {
-                            scope.checkPosition();
-                        }
-
-                        // reset count down
-                        scope.count_down = _.parseInt(scope.display_seconds);
-
-                        // stop timeout
-                        $timeout.cancel(wait_timer);
-
-                        // auto close after interval
-                        if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {
-
-                            // start wait
-                            scope.wait();
-
-                            // set outer promt class
-                            scope.outer_prompt_class = HAS_PROMPT_CLASS;
-                        }
+                        scope.update();
                     } else {
                         $timeout.cancel(wait_timer);
                         scope.close();
@@ -216,6 +235,17 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                         scope.outer_prompt_class = HAS_PROMPT_CLASS;
                     } else {
                         scope.outer_prompt_class = "";
+                    }
+                });
+
+                scope.$watch('force_change', function(val) {
+
+                    // set outer promt class
+                    if (!_.isUndefined(val)) {
+                        if (val) {
+                            scope.force_change = false;
+                            scope.update();
+                        }
                     }
                 });
 

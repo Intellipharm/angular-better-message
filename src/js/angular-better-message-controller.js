@@ -13,7 +13,7 @@
          */
         this.onClick = function() {
             if (!_.isUndefined($s.onClick)) {
-                $s.onClick();
+                $s.onClick({state: $s.state});
             }
             $s.close();
         };

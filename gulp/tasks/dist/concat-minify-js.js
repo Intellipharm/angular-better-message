@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, config) {
 
         gulp.src([
             src_dir + config.name + '.js',
-            src_dir + config.name + '/*.js'
+            src_dir + '*.js'
             ])
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.concat(config.name + '.js'))

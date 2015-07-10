@@ -3,11 +3,11 @@ module.exports = function(gulp, plugins, config) {
 
         var src_dir = config.dir.src + '/' + config.dir.js + '/';
         var dest_dir = config.dir.dist + '/' + config.dir.js + '/';
-
+        
         gulp.src([
                 src_dir + config.name + '.js',
-                src_dir + config.name + '/'+ config.dir.templates + '/*.js',
-                src_dir + config.name + '/*.js'
+                src_dir + config.dir.templates + '/*.js',
+                src_dir + '*.js'
             ])
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.concat(config.name + '.tmpl.js'))
