@@ -71,7 +71,6 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
             scope: {
                 api:                    "=",
                 state:                  "=",
-                force_change:           "=forceChange",
                 message:                "=",
                 message_icon_class:     "=messageIconClass",
                 prompt:                 "=",
@@ -235,17 +234,6 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                         scope.outer_prompt_class = HAS_PROMPT_CLASS;
                     } else {
                         scope.outer_prompt_class = "";
-                    }
-                });
-
-                scope.$watch('force_change', function(val) {
-
-                    // set outer promt class
-                    if (!_.isUndefined(val)) {
-                        if (val) {
-                            scope.force_change = false;
-                            scope.update();
-                        }
                     }
                 });
 
