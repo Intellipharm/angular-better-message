@@ -56,8 +56,11 @@
             }
         };
 
-        this.onPromptClick = function(state) {
-            console.log("Prompt Click Handler Called (state: "+state+")");
+        this.onPromptClick = function(message, state, data) {
+            console.log("Prompt Click Handler Called");
+            console.log("message: "+message);
+            console.log("state: "+state);
+            console.log("data: "+data);
         };
 	};
 

@@ -25,7 +25,12 @@
          */
         this.onClick = function() {
             if (!_.isUndefined($s.onClick)) {
-                $s.onClick({state: $s.state});
+
+                var message = !_.isUndefined($s.message) ? $s.message : null;
+                var state = !_.isUndefined($s.state) ? $s.state : null;
+                var data = !_.isUndefined($s.data) ? $s.data : null;
+
+                $s.onClick({message: message, state: state, data: data});
             }
             $s.close();
         };
@@ -70,6 +75,7 @@
             scope: {
                 api:                    "=",
                 state:                  "=",
+                data:                   "=", // will be passed back on events
                 message:                "=",
                 message_icon_class:     "=messageIconClass",
                 prompt:                 "=",

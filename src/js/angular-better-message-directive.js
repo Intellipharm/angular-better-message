@@ -31,6 +31,7 @@
             scope: {
                 api:                    "=",
                 state:                  "=",
+                data:                   "=", // will be passed back on events
                 message:                "=",
                 message_icon_class:     "=messageIconClass",
                 prompt:                 "=",
