@@ -29,9 +29,9 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
 
                 var message = !_.isUndefined($s.message) ? $s.message : null;
                 var state = !_.isUndefined($s.state) ? $s.state : null;
-                var data = !_.isUndefined($s.data) ? $s.data : null;
+                var key = !_.isUndefined($s.key) ? $s.key : null;
 
-                $s.onClick({message: message, state: state, data: data});
+                $s.onClick({message: message, state: state, key: key});
             }
             $s.close();
         };
@@ -75,9 +75,9 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
             restrict: 'EA',
             scope: {
                 api:                    "=",
-                state:                  "=",
-                data:                   "=", // will be passed back on events
-                message:                "=",
+                message:                "=", // will be passed back on events
+                state:                  "=", // will be passed back on events
+                key:                    "=", // will be passed back on events
                 message_icon_class:     "=messageIconClass",
                 prompt:                 "=",
                 prompt_button_class:    "=promptButtonClass",
@@ -112,6 +112,10 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
 
                 api.close = function() {
                     scope.close();
+                };
+
+                api.update = function() {
+                    scope.update();
                 };
 
                 //--------------------------------------------------------

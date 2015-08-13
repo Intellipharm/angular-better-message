@@ -30,9 +30,9 @@
             restrict: 'EA',
             scope: {
                 api:                    "=",
-                state:                  "=",
-                data:                   "=", // will be passed back on events
-                message:                "=",
+                message:                "=", // will be passed back on events
+                state:                  "=", // will be passed back on events
+                key:                    "=", // will be passed back on events
                 message_icon_class:     "=messageIconClass",
                 prompt:                 "=",
                 prompt_button_class:    "=promptButtonClass",
@@ -67,6 +67,10 @@
 
                 api.close = function() {
                     scope.close();
+                };
+
+                api.update = function() {
+                    scope.update();
                 };
 
                 //--------------------------------------------------------

@@ -1,8 +1,17 @@
 <html>
 <head>
-	<title>AngularSvgNodes : Simple Example</title>
+	<title>AngularBetterMessage : Simple Example</title>
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/page.css">
+    <link rel="styleshe
+        this.INFO       = 'info';
+        this.SUCCESS    = 'success';
+        this.ERROR      = 'error';
+        this.WARNING    = 'warning';
+        this.SAVING     = 'saving';
+        this.SAVED      = 'saved';
+        this.REQUIRED   = 'required';
+        this.INVALID    = 'invalid';
+        this.DELETE     = 'delete';et" href="../css/page.css">
     <link rel="stylesheet" href="../../../dist/css/angular-better-message.min.css">
     <link rel="stylesheet" href="css/angular-better-message.css">
 </head>
@@ -10,7 +19,7 @@
 
 <div class="row">
 	<div class="col-xs-12 description">
-		<h2>AngularSvgNodes Simple Example</h2>
+		<h2>AngularBetterMessage Simple Example</h2>
 	</div>
 </div><!--/.row-->
 
@@ -23,14 +32,14 @@
 		fixed-position-on-scroll="true"
 		message="ctrl.better_message.message"
 		state="ctrl.better_message.state"
-		data="ctrl.better_message.data"
+		key="ctrl.better_message.key"
 		prompt="ctrl.better_message.prompt"
 		message-icon-class="ctrl.better_message.icon_class"
 		prompt-icon-class="ctrl.better_message.prompt_icon_class"
 		prompt-button-class="ctrl.better_message.prompt_button_class"
 		display-seconds="ctrl.better_message.display_seconds"
 		show-count-down="ctrl.better_message.show_count_down"
-		on-prompt-click="ctrl.onPromptClick(state)"></angular-better-message>
+		on-prompt-click="ctrl.onPromptClick(message, state, key)"></angular-better-message>
 </div>
 
 <div class="row">

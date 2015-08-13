@@ -8,6 +8,16 @@
 
     var service = function () {
 
+        this.INFO       = 'info';
+        this.SUCCESS    = 'success';
+        this.ERROR      = 'error';
+        this.WARNING    = 'warning';
+        this.SAVING     = 'saving';
+        this.SAVED      = 'saved';
+        this.REQUIRED   = 'required';
+        this.INVALID    = 'invalid';
+        this.DELETE     = 'delete';
+
         var default_config = {
             message: "",
             state: "",
@@ -86,6 +96,7 @@
             // get specific config
             if (!_.isUndefined(key) && _.has(config, key)) {
                 result = _.merge(result, _.clone(config[key]))
+                result.key = key;
             }
 
             // override message

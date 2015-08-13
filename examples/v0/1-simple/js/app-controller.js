@@ -22,24 +22,21 @@
             switch (count) {
                 case 1:
                     self.better_message = MessageService.getMessageConfig('undo');
-                    self.better_message.force_change = true;
                     break;
                 case 2:
                     self.better_message = MessageService.getMessageConfig('undo');
-                    self.better_message.force_change = true;
+                    self.angular_better_message_api.update(); // must call update becasue message has not changed
                     break;
                 case 3:
                     self.better_message = MessageService.getMessageConfig('undo');
-                    self.better_message.force_change = true;
+                    self.angular_better_message_api.update(); // must call update becasue message has not changed
                     break;
                 case 4:
                     self.better_message = MessageService.getMessageConfig('invalid');
-                    //self.better_message = MessageService.getMessageConfig('info', "Hello you");
                     break;
                 case 5:
                     self.better_message = MessageService.getMessageConfig('invalid');
-                    self.better_message.force_change = true;
-                    //self.better_message = MessageService.getMessageConfig('info', "Hello you");
+                    self.angular_better_message_api.update(); // must call update becasue message has not changed
                     break;
                 case 6:
                     self.better_message = MessageService.getMessageConfig('saving');
@@ -53,14 +50,21 @@
                 case 9:
                     self.better_message = MessageService.getMessageConfig('invalid');
                     break;
+                case 10:
+                    self.better_message = MessageService.getMessageConfig('info', "Hello");
+                    break;
+                case 11:
+                    self.better_message = MessageService.getMessageConfig('info', "Hello again");
+                    count = 0;
+                    break;
             }
         };
 
-        this.onPromptClick = function(message, state, data) {
+        this.onPromptClick = function(message, state, key) {
             console.log("Prompt Click Handler Called");
             console.log("message: "+message);
             console.log("state: "+state);
-            console.log("data: "+data);
+            console.log("key: "+key);
         };
 	};
 

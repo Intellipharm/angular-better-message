@@ -16,9 +16,9 @@
 
                 var message = !_.isUndefined($s.message) ? $s.message : null;
                 var state = !_.isUndefined($s.state) ? $s.state : null;
-                var data = !_.isUndefined($s.data) ? $s.data : null;
+                var key = !_.isUndefined($s.key) ? $s.key : null;
 
-                $s.onClick({message: message, state: state, data: data});
+                $s.onClick({message: message, state: state, key: key});
             }
             $s.close();
         };
