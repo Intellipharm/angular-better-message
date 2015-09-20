@@ -1,6 +1,7 @@
 {
   "name": "angular-better-message",
   "version": "0.0.1",
+  "main": "dist/angular-better-message.tmpl.min.js",
   "dependencies": {
     "angular": "^1.4.2",
     "angular-animate": "^1.4.2",
