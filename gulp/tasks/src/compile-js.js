@@ -2,7 +2,7 @@ module.exports = function(gulp, plugins, config) {
     return function() {
 
         var src_dir = config.dir.src + '/' + config.dir.html + '/';
-        var dest_dir = config.dir.src + '/' + config.dir.js + '/' + config.name + '/' + config.dir.templates + '/';
+        var dest_dir = config.dir.src + '/' + config.dir.js + '/' + config.dir.templates + '/';
 
 
         gulp.src(src_dir + '/*.html')

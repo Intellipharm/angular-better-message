@@ -10,7 +10,7 @@
 
 })();
 
-angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> {{message}}&nbsp; <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}}<span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
+angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> {{message}} <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}} <span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
 (function () {
 
     "use strict";
