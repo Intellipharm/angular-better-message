@@ -10,7 +10,7 @@
 
 })();
 
-angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> {{message}} <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}} <span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
+angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> <span class=\"angular-better-message-wrapper\"></span> <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}} <span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
 (function () {
 
     "use strict";
@@ -55,6 +55,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
     var directive = function(
         $window,
         $timeout,
+        $compile,
         MESSAGE_CLASS,
         PROMPT_CLASS,
         HAS_PROMPT_CLASS
@@ -230,8 +231,13 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 });
 
                 scope.$watch('message', function(val) {
+                    var wrapper = angular.element(element[0].querySelector('.angular-better-message-wrapper'));
+                    wrapper.empty();
 
                     if (!_.isUndefined(val) && val !== "") {
+                        var compiled_message = $compile('<span>' + val + '</span>')(scope.$parent.$parent);
+                        wrapper.append(compiled_message);
+
                         scope.update();
                     } else {
                         $timeout.cancel(wait_timer);
@@ -273,6 +279,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
     directive.$inject = [
         '$window',
         '$timeout',
+        '$compile',
         'ANGULAR_BETTER_MESSAGE_CLASS',
         'ANGULAR_BETTER_MESSAGE_PROMPT_CLASS',
         'ANGULAR_BETTER_MESSAGE_HAS_PROMPT_CLASS'

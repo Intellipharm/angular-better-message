@@ -9,6 +9,7 @@
     var directive = function(
         $window,
         $timeout,
+        $compile,
         MESSAGE_CLASS,
         PROMPT_CLASS,
         HAS_PROMPT_CLASS
@@ -184,8 +185,13 @@
                 });
 
                 scope.$watch('message', function(val) {
+                    var wrapper = angular.element(element[0].querySelector('.angular-better-message-wrapper'));
+                    wrapper.empty();
 
                     if (!_.isUndefined(val) && val !== "") {
+                        var compiled_message = $compile('<span>' + val + '</span>')(scope.$parent.$parent);
+                        wrapper.append(compiled_message);
+
                         scope.update();
                     } else {
                         $timeout.cancel(wait_timer);
@@ -227,6 +233,7 @@
     directive.$inject = [
         '$window',
         '$timeout',
+        '$compile',
         'ANGULAR_BETTER_MESSAGE_CLASS',
         'ANGULAR_BETTER_MESSAGE_PROMPT_CLASS',
         'ANGULAR_BETTER_MESSAGE_HAS_PROMPT_CLASS'
