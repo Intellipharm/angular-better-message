@@ -137,10 +137,19 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                  */
                 scope.wait = function() {
 
-                    wait_timer = $timeout(function() {
+                    //wait_timer = $timeout(function() {
+                    //
+                    //    if (--scope.count_down === 0) {
+                    //        $timeout.cancel(wait_timer);
+                    //        scope.close();
+                    //    } else {
+                    //        scope.wait();
+                    //    }
+                    //}, 1000);
+                    wait_timer = window.setInterval(function() {
 
                         if (--scope.count_down === 0) {
-                            $timeout.cancel(wait_timer);
+                            window.clearInterval(wait_timer);
                             scope.close();
                         } else {
                             scope.wait();
@@ -157,7 +166,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     if (scope.is_visible && !element.hasClass('detached') && _.isNull(element[0].offsetParent)) {
 
                         // wait
-                        element_visible_timer = $timeout(scope.checkPosition, 100);
+                        element_visible_timer = window.setInterval(scope.checkPosition, 100);
                     } else {
 
                         // get element top offset
@@ -174,7 +183,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 scope.updateDetached = function() {
 
                     // cancel timer
-                    $timeout.cancel(element_visible_timer);
+                    window.clearInterval(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
                     if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
@@ -205,7 +214,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     scope.count_down = _.parseInt(scope.display_seconds);
 
                     // stop timeout
-                    $timeout.cancel(wait_timer);
+                    window.clearInterval(wait_timer);
 
                     // auto close after interval
                     if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {
@@ -240,7 +249,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
 
                         scope.update();
                     } else {
-                        $timeout.cancel(wait_timer);
+                        window.clearInterval(wait_timer);
                         scope.close();
                     }
                 });
