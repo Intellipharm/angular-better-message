@@ -100,10 +100,10 @@
                     //        scope.wait();
                     //    }
                     //}, 1000);
-                    wait_timer = window.setInterval(function() {
+                    wait_timer = window.setTimeout(function() {
 
                         if (--scope.count_down === 0) {
-                            window.clearInterval(wait_timer);
+                            window.clearTimeout(wait_timer);
                             scope.close();
                         } else {
                             scope.wait();
@@ -120,7 +120,7 @@
                     if (scope.is_visible && !element.hasClass('detached') && _.isNull(element[0].offsetParent)) {
 
                         // wait
-                        element_visible_timer = window.setInterval(scope.checkPosition, 100);
+                        element_visible_timer = window.setTimeout(scope.checkPosition, 100);
                     } else {
 
                         // get element top offset
@@ -137,7 +137,7 @@
                 scope.updateDetached = function() {
 
                     // cancel timer
-                    window.clearInterval(element_visible_timer);
+                    window.clearTimeout(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
                     if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
@@ -168,7 +168,7 @@
                     scope.count_down = _.parseInt(scope.display_seconds);
 
                     // stop timeout
-                    window.clearInterval(wait_timer);
+                    window.clearTimeout(wait_timer);
 
                     // auto close after interval
                     if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {
@@ -203,7 +203,7 @@
 
                         scope.update();
                     } else {
-                        window.clearInterval(wait_timer);
+                        window.clearTimeout(wait_timer);
                         scope.close();
                     }
                 });

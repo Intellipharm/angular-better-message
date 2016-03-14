@@ -10,7 +10,7 @@
 
 })();
 
-angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> <span class=\"angular-better-message-wrapper\"></span> <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}} <span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
+
 (function () {
 
     "use strict";
@@ -146,10 +146,10 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     //        scope.wait();
                     //    }
                     //}, 1000);
-                    wait_timer = window.setInterval(function() {
+                    wait_timer = window.setTimeout(function() {
 
                         if (--scope.count_down === 0) {
-                            window.clearInterval(wait_timer);
+                            window.clearTimeout(wait_timer);
                             scope.close();
                         } else {
                             scope.wait();
@@ -166,7 +166,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     if (scope.is_visible && !element.hasClass('detached') && _.isNull(element[0].offsetParent)) {
 
                         // wait
-                        element_visible_timer = window.setInterval(scope.checkPosition, 100);
+                        element_visible_timer = window.setTimeout(scope.checkPosition, 100);
                     } else {
 
                         // get element top offset
@@ -183,7 +183,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 scope.updateDetached = function() {
 
                     // cancel timer
-                    window.clearInterval(element_visible_timer);
+                    window.clearTimeout(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
                     if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
@@ -214,7 +214,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     scope.count_down = _.parseInt(scope.display_seconds);
 
                     // stop timeout
-                    window.clearInterval(wait_timer);
+                    window.clearTimeout(wait_timer);
 
                     // auto close after interval
                     if (!_.isUndefined(scope.count_down) && scope.count_down !== 0) {
@@ -249,7 +249,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
 
                         scope.update();
                     } else {
-                        window.clearInterval(wait_timer);
+                        window.clearTimeout(wait_timer);
                         scope.close();
                     }
                 });
