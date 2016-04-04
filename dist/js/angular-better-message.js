@@ -150,8 +150,10 @@
                         if (--scope.count_down === 0) {
                             window.clearTimeout(wait_timer);
                             scope.close();
+                            scope.$apply();
                         } else {
                             scope.wait();
+                            scope.$apply();
                         }
                     }, 1000);
                 };
@@ -165,7 +167,10 @@
                     if (scope.is_visible && !element.hasClass('detached') && _.isNull(element[0].offsetParent)) {
 
                         // wait
-                        element_visible_timer = window.setTimeout(scope.checkPosition, 100);
+                        element_visible_timer = window.setTimeout(function() {
+                            scope.checkPosition();
+                            scope.$apply();
+                        }, 100);
                     } else {
 
                         // get element top offset
