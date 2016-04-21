@@ -10,7 +10,7 @@
 
 })();
 
-angular.module("AngularBetterMessage", []).run(["$templateCache", function($templateCache) {$templateCache.put("html/angular-better-message.html","<div class=\"angular-better-message\" ng-class=\"[state, outer_prompt_class]\" ng-show=\"is_visible\"><div ng-class=\"message_class\"><span ng-class=\"message_icon_class\"></span> <span class=\"angular-better-message-wrapper\"></span> <span class=\"countdown\" ng-if=\"show_count_down\">{{count_down}}</span></div><div ng-if=\"prompt\" ng-class=\"prompt_class\"><button ng-class=\"prompt_button_class\" ng-click=\"ctrl.onClick()\">{{prompt}} <span ng-class=\"prompt_icon_class\"></span></button></div></div>");}]);
+
 (function () {
 
     "use strict";
@@ -76,19 +76,20 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
         return {
             restrict: 'EA',
             scope: {
-                api:                    "=",
-                message:                "=", // will be passed back on events
-                state:                  "=", // will be passed back on events
-                key:                    "=", // will be passed back on events
-                data:                   "=", // will be passed back on events
-                message_icon_class:     "=messageIconClass",
-                prompt:                 "=",
-                prompt_button_class:    "=promptButtonClass",
-                prompt_icon_class:      "=promptIconClass",
-                display_seconds:        "=displaySeconds",
-                show_count_down:        "=showCountDown",
+                api:                      "=",
+                message:                  "=", // will be passed back on events
+                state:                    "=", // will be passed back on events
+                key:                      "=", // will be passed back on events
+                data:                     "=", // will be passed back on events
+                message_icon_class:       "=messageIconClass",
+                prompt:                   "=",
+                prompt_button_class:      "=promptButtonClass",
+                prompt_icon_class:        "=promptIconClass",
+                display_seconds:          "=displaySeconds",
+                show_count_down:          "=showCountDown",
                 fixed_position_on_scroll: "=fixedPositionOnScroll",
-                onClick:                "&onPromptClick"
+                always_detach:            "=alwaysDetach",
+                onClick:                  "&onPromptClick"
             },
             controller: "AngularBetterMessageCtrl as ctrl",
             link: function(scope, element, attrs, controller) {
@@ -186,12 +187,11 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                  * updateDetached
                  */
                 scope.updateDetached = function() {
-
                     // cancel timer
                     window.clearTimeout(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
-                    if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
+                    if (scope.always_detach && !element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
                         detached_position = $window.pageYOffset;
                         element.addClass('detached');
                     }
@@ -284,6 +284,8 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                         }
                     });
                 }
+
+                scope.updateDetached();
             },
             replace: true,
             templateUrl: 'html/angular-better-message.html'

@@ -30,19 +30,20 @@
         return {
             restrict: 'EA',
             scope: {
-                api:                    "=",
-                message:                "=", // will be passed back on events
-                state:                  "=", // will be passed back on events
-                key:                    "=", // will be passed back on events
-                data:                   "=", // will be passed back on events
-                message_icon_class:     "=messageIconClass",
-                prompt:                 "=",
-                prompt_button_class:    "=promptButtonClass",
-                prompt_icon_class:      "=promptIconClass",
-                display_seconds:        "=displaySeconds",
-                show_count_down:        "=showCountDown",
+                api:                      "=",
+                message:                  "=", // will be passed back on events
+                state:                    "=", // will be passed back on events
+                key:                      "=", // will be passed back on events
+                data:                     "=", // will be passed back on events
+                message_icon_class:       "=messageIconClass",
+                prompt:                   "=",
+                prompt_button_class:      "=promptButtonClass",
+                prompt_icon_class:        "=promptIconClass",
+                display_seconds:          "=displaySeconds",
+                show_count_down:          "=showCountDown",
                 fixed_position_on_scroll: "=fixedPositionOnScroll",
-                onClick:                "&onPromptClick"
+                always_detach:            "=alwaysDetach",
+                onClick:                  "&onPromptClick"
             },
             controller: "AngularBetterMessageCtrl as ctrl",
             link: function(scope, element, attrs, controller) {
@@ -140,12 +141,11 @@
                  * updateDetached
                  */
                 scope.updateDetached = function() {
-
                     // cancel timer
                     window.clearTimeout(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
-                    if (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
+                    if (scope.always_detach && !element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
                         detached_position = $window.pageYOffset;
                         element.addClass('detached');
                     }
@@ -238,6 +238,8 @@
                         }
                     });
                 }
+
+                scope.updateDetached();
             },
             replace: true,
             templateUrl: 'html/angular-better-message.html'
