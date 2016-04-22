@@ -156,7 +156,6 @@
                 };
 
                 scope.updateDetachedClass = function(detached) {
-                    console.log(detached);
                     if (detached) {
                         if (!element.hasClass('detached')) {
                             element.addClass('detached');
