@@ -88,7 +88,7 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                 display_seconds:          "=displaySeconds",
                 show_count_down:          "=showCountDown",
                 fixed_position_on_scroll: "=fixedPositionOnScroll",
-                always_detach:            "=alwaysDetach",
+                always_detached:          "=alwaysDetached",
                 onClick:                  "&onPromptClick"
             },
             controller: "AngularBetterMessageCtrl as ctrl",
@@ -191,14 +191,26 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     window.clearTimeout(element_visible_timer);
 
                     // element is not detached and is at the top of viewport, then detach
-                    if (scope.always_detach && !element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0) {
+                    if (scope.always_detached || (!element.hasClass('detached') && element_top <= 0 && $window.pageYOffset > 0)) {
+                        scope.updateDetachedClass(true);
                         detached_position = $window.pageYOffset;
-                        element.addClass('detached');
                     }
                     // element is detached and is at or above detached position, then attach
                     else if (element.hasClass('detached') && !_.isUndefined(detached_position) && $window.pageYOffset <= detached_position) {
-                        //detached_position = undefined;
-                        element.removeClass('detached');
+                        scope.updateDetachedClass(false);
+                    }
+                };
+
+                scope.updateDetachedClass = function(detached) {
+                    console.log(detached);
+                    if (detached) {
+                        if (!element.hasClass('detached')) {
+                            element.addClass('detached');
+                        }
+                    } else {
+                        if (element.hasClass('detached')) {
+                            element.removeClass('detached');
+                        }
                     }
                 };
 
@@ -269,6 +281,10 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                     }
                 });
 
+                scope.$watch('always_detached', function() {
+                    scope.updateDetachedClass(scope.always_detached);
+                });
+
                 //--------------------------------------------------------
                 // events
                 //--------------------------------------------------------
@@ -284,8 +300,6 @@ angular.module("AngularBetterMessage", []).run(["$templateCache", function($temp
                         }
                     });
                 }
-
-                scope.updateDetached();
             },
             replace: true,
             templateUrl: 'html/angular-better-message.html'
